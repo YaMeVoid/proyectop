@@ -10,37 +10,64 @@ import java.util.List;
  */
 public class medicamento {
 
-class Medicamento {
-    private String claveMedicamento;
+    private int id;
     private String nombre;
-    private String descripcion;
     private double precio;
+    private int cantidad;
+   
 
-    public Medicamento(String claveMedicamento, String nombre, String descripcion, double precio) {
-        this.claveMedicamento = claveMedicamento;
+    public medicamento(int id, String nombre, double precio, int cantidad) {
+        this.id = id;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.precio = precio;
+        this.cantidad = cantidad;
     }
 
-    public String getClaveMedicamento() {
-        return claveMedicamento;
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
     public double getPrecio() {
         return precio;
     }
 
-    public String obtenerDetalles() {
-        return "Clave: " + claveMedicamento + ", Nombre: " + nombre + ", Descripción: " + descripcion + ", Precio: " + precio;
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    public static void main(String[] args) {
+         Inventario inventario = new Inventario();
+        Compra compra = new Compra();
+        Venta venta = new Venta();
+
+        // Agregar medicamentos al inventario
+        medicamento medicamento1 = new medicamento(1, "Medicamento 1", 10.99, 5);
+        medicamento medicamento2 = new medicamento(2, "Medicamento 2", 5.99, 10);
+        inventario.agregarMedicamento(medicamento1);
+        inventario.agregarMedicamento(medicamento2);
+
+        // Realizar una compra
+        compra.agregarMedicamento(medicamento1);
+        compra.agregarMedicamento(medicamento2);
+
+        // Agregar la compra a la venta
+        venta.agregarCompra(compra);
+
+        // Consultar el total de ventas
+        double totalVentas = venta.calcularTotalVentas(); 
     }
 }
-}
+
+
+    
+        
+
+
